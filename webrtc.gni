@@ -1057,7 +1057,7 @@ if (is_mac || is_ios) {
     this_target_name = target_name
     umbrella_header_path =
         "$target_gen_dir/$output_name.framework/WebRTC/$output_name.h"
-    modulemap_path = "$target_gen_dir/Modules/module.modulemap"
+    modulemap_path = "$target_gen_dir/Modules/$output_name/module.modulemap"
 
     action_foreach("create_bracket_include_headers_$target_name") {
       script = "//tools_webrtc/apple/copy_framework_header.py"

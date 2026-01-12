@@ -147,6 +147,39 @@ if (is_android) {
     output_extension = "so"
   }
 
+  dist_jar("libexport_audio") {
+    _target_dir_name = get_label_info(":$target_name", "dir")
+    output = "${root_out_dir}/lib.java${_target_dir_name}/${target_name}.jar"
+    direct_deps_only = true
+    use_unprocessed_jars = true
+    requires_android = true
+
+    deps = [
+      ":libexport_audio_java",
+    ]
+  }
+
+  rtc_android_library("libexport_audio_java") {
+    visibility = [ "*" ]
+    sources = [ 
+      "api/org/webrtc/agc2/GainController2.java",
+    ]
+
+    deps = []
+  }
+
+  rtc_shared_library("libexport_audio_so") {
+    sources = [ "src/jni/agc2/gain_controller2_jni.cc" ]
+
+    suppressed_configs += [ "//build/config/android:hide_all_but_jni_onload" ]
+    configs += [ "//build/config/android:hide_all_but_jni" ]
+
+    deps = [
+      "../../modules/audio_processing:gain_controller2_c_api",
+    ]
+    output_extension = "so"
+  }
+
   #######################
   # Public Java modules #
   #######################
