@@ -13,7 +13,7 @@
 @implementation RTC_OBJC_TYPE(RTCGainController2Config)
 
 - (instancetype)initWithSampleRateHz:(int)sampleRateHz numChannels:(int)numChannels {
-  if (self = [super init]) {
+  if ((self = [super init])) {
     _sampleRateHz = sampleRateHz;
     _numChannels = numChannels;
     _useInternalVad = YES;

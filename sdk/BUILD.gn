@@ -2018,7 +2018,7 @@ if (is_ios || is_mac) {
 
   if (is_ios) {
     apple_framework_bundle_with_umbrella_header("agc2_framework") {
-      info_plist = "objc/Info.plist"
+      info_plist = "objc/api/agc2/Info.plist"
       output_name = "AGC2Capi"
 
       sources = [
@@ -2036,7 +2036,7 @@ if (is_ios || is_mac) {
 
   if (is_mac) {
     apple_framework_bundle_with_umbrella_header("agc2_mac_framework") {
-      info_plist = "objc/Info.plist"
+      info_plist = "objc/api/agc2/Info.plist"
       output_name = "AGC2Capi"
 
       sources = [
