@@ -144,13 +144,6 @@ rtc_library("gain_controller2_c_api") {
   ]
 }
 
-rtc_static_library("gain_controller2_c_api_complete") {
-  visibility = [ "*" ]
-  allow_poison = [ "environment_construction" ]
-  complete_static_lib = true
-  deps = [ ":gain_controller2_c_api" ]
-}
-
 rtc_library("audio_processing") {
   visibility = [ "*" ]
   configs += [ ":apm_debug_dump" ]

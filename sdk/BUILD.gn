@@ -1988,4 +1988,67 @@ if (is_ios || is_mac) {
       ]
     }
   }
+
+  # AGC2 ObjC wrapper
+  rtc_library("agc2_objc") {
+    visibility = [ "*" ]
+    allow_poison = [ "environment_construction" ]
+
+    sources = [
+      "objc/api/agc2/RTCGainController2.h",
+      "objc/api/agc2/RTCGainController2.mm",
+      "objc/api/agc2/RTCGainController2Config.h",
+      "objc/api/agc2/RTCGainController2Config.mm",
+    ]
+
+    configs += [ ":common_config_objc" ]
+
+    public_configs = [ ":common_config_objc" ]
+
+    deps = [
+      ":base_objc",
+      "../modules/audio_processing:gain_controller2_c_api",
+    ]
+  }
+
+  bundle_data("agc2_privacy_info") {
+    sources = [ "objc/PrivacyInfo.xcprivacy" ]
+    outputs = [ "{{bundle_resources_dir}}/{{source_file_part}}" ]
+  }
+
+  if (is_ios) {
+    apple_framework_bundle_with_umbrella_header("agc2_framework") {
+      info_plist = "objc/Info.plist"
+      output_name = "AGC2Capi"
+
+      sources = [
+        "objc/api/agc2/RTCGainController2.h",
+        "objc/api/agc2/RTCGainController2Config.h",
+        "objc/base/RTCMacros.h",
+      ]
+
+      deps = [
+        ":agc2_objc",
+        ":agc2_privacy_info",
+      ]
+    }
+  }
+
+  if (is_mac) {
+    apple_framework_bundle_with_umbrella_header("agc2_mac_framework") {
+      info_plist = "objc/Info.plist"
+      output_name = "AGC2Capi"
+
+      sources = [
+        "objc/api/agc2/RTCGainController2.h",
+        "objc/api/agc2/RTCGainController2Config.h",
+        "objc/base/RTCMacros.h",
+      ]
+
+      deps = [
+        ":agc2_objc",
+        ":agc2_privacy_info",
+      ]
+    }
+  }
 }

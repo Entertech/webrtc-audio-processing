@@ -154,7 +154,7 @@ if (is_android) {
     configs += [ "//build/config/android:hide_all_but_jni" ]
 
     deps = [
-      "../../modules/audio_processing:gain_controller2_c_api_complete",
+      "../../modules/audio_processing:gain_controller2_c_api",
     ]
     output_extension = "so"
     output_name = "agc2capi"
