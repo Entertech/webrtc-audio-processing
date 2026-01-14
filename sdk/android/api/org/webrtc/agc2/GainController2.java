@@ -103,8 +103,4 @@ public final class GainController2 implements AutoCloseable {
       short[] outputInterleaved,
       int numFrames,
       float speechProbability);
-
-  static {
-    System.loadLibrary("agc2capi");
-  }
 }
