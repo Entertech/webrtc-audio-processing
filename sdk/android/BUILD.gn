@@ -153,6 +153,9 @@ if (is_android) {
     suppressed_configs += [ "//build/config/android:hide_all_but_jni_onload" ]
     configs += [ "//build/config/android:hide_all_but_jni" ]
 
+    # Need to link unwind for native_api_stacktrace dependency
+    libs = [ "unwind" ]
+
     deps = [
       "../../modules/audio_processing:gain_controller2_c_api",
     ]
