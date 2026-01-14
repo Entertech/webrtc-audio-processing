@@ -147,20 +147,32 @@ if (is_android) {
     output_extension = "so"
   }
 
-  rtc_shared_library("agc2capi_jni") {
+  dist_jar("libexport_audio") {
+    _target_dir_name = get_label_info(":$target_name", "dir")
+    output = "${root_out_dir}/lib.java${_target_dir_name}/${target_name}.jar"
+    direct_deps_only = true
+    use_unprocessed_jars = true
+    requires_android = true
+
+    deps = [
+      ":base_java",
+      ":logging_java",
+      "../../rtc_base:base_java",
+      "../../third_party/jni_zero:jni_zero_java",
+    ]
+  }
+  rtc_shared_library("libexport_audio_so") {
     sources = [ "src/jni/agc2/gain_controller2_jni.cc" ]
 
     suppressed_configs += [ "//build/config/android:hide_all_but_jni_onload" ]
     configs += [ "//build/config/android:hide_all_but_jni" ]
 
-    # Need to link unwind for native_api_stacktrace dependency
-    libs = [ "unwind" ]
-
     deps = [
       "../../modules/audio_processing:gain_controller2_c_api",
+      ":native_api_jni",
+      "//third_party/jni_zero",
     ]
     output_extension = "so"
-    output_name = "agc2capi"
   }
 
   #######################
