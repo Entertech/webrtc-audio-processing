@@ -162,7 +162,7 @@ if (is_android) {
   rtc_android_library("libexport_audio_java") {
     visibility = [ "*" ]
     sources = [ 
-      "api/org/webrtc/Predicate.java",
+      "api/org/webrtc/agc2/GainController2.java",
     ]
 
     deps = []
