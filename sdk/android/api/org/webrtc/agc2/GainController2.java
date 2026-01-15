@@ -11,7 +11,7 @@ public final class GainController2 implements AutoCloseable {
     public float adaptiveInitialGainDb = 15.0f;
     public float adaptiveMaxGainChangeDbPerSecond = 6.0f;
     public float adaptiveMaxOutputNoiseLevelDbfs = -50.0f;
-    public float fixedGainDb = 0.0f;
+    public float fixedGainDb;
 
     public Config(int sampleRateHz, int numChannels) {
       this.sampleRateHz = sampleRateHz;
