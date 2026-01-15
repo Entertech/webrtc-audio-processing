@@ -155,12 +155,19 @@ if (is_android) {
     requires_android = true
 
     deps = [
-      ":base_java",
-      ":logging_java",
-      "../../rtc_base:base_java",
-      "../../third_party/jni_zero:jni_zero_java",
+      ":libexport_audio_java",
     ]
   }
+
+  rtc_android_library("libexport_audio_java") {
+    visibility = [ "*" ]
+    sources = [ 
+      "api/org/webrtc/Predicate.java",
+    ]
+
+    deps = []
+  }
+
   rtc_shared_library("libexport_audio_so") {
     sources = [ "src/jni/agc2/gain_controller2_jni.cc" ]
 
@@ -169,8 +176,6 @@ if (is_android) {
 
     deps = [
       "../../modules/audio_processing:gain_controller2_c_api",
-      ":native_api_jni",
-      "//third_party/jni_zero",
     ]
     output_extension = "so"
   }
