@@ -92,6 +92,7 @@ rtc_library("field_trial") {
     "../rtc_base/containers:flat_set",
     "//third_party/abseil-cpp/absl/algorithm:container",
     "//third_party/abseil-cpp/absl/strings:string_view",
+    "//third_party/abseil-cpp/absl/synchronization",
   ]
 }
 
